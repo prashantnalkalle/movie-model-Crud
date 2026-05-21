@@ -1,4 +1,21 @@
 const moviecontainer = document.getElementById('moviecontainer')
+const showbtn = document.getElementById('showbtn')
+const backdrop = document.getElementById('backdrop')
+const movieModel = document.getElementById('movieModel')
+const close1 =[...document.querySelectorAll('.closebtn')]
+const movie = document.getElementById('movie')
+const MovieName = document.getElementById('MovieName')
+const movieImg = document.getElementById('movieImg')
+const movieDescription = document.getElementById('movieDescription')
+const movieRating = document.getElementById('movieRating')
+const addmovie = document.getElementById('addmovie')
+const updatemovie = document.getElementById('updatemovie')
+
+
+
+
+
+
 let moviesArr = [
   {
     movieName: 'Salar',
@@ -78,5 +95,78 @@ function templating(arr){
   moviecontainer.innerHTML = result
 }
 
+
+function onshowhandl(){
+
+  backdrop.classList.toggle('active')
+  movieModel.classList.toggle('active')
+  movie.reset()
+
+}
+
+
+function onsubmithandl(ele){
+  ele.preventDefault()
+
+  let newmovie ={
+    movieName : MovieName.value,
+    movieImg : movieImg.value,
+    movieDesciption : movieDescription.value,
+    movieRating : movieRating.value,
+    movieId : Date.now().toString()
+    
+  }
+
+  moviesArr.push(newmovie)
+
+  movie.reset()
+
+ let div = document.createElement('div');
+  div.className = 'col-md-3'
+  div.id = newmovie.movieId
+
+  div.innerHTML =`<div class="card moviecard">
+					<div class="card-header d-flex justify-content-between align-items-center">
+						<h2>${newmovie.movieName}</h2>
+						<span class="badge ${badgecolor(newmovie.movieRating)}">${newmovie.movieRating}</span>
+					</div>
+					<div class="card-body">
+						<figure>
+							<img src=${newmovie.movieImg}
+							 alt="${newmovie.movieName}"
+							 title="${newmovie.movieName}">
+							<figcaption>
+								<h4>${newmovie.movieName}</h4>
+								<p>${newmovie.movieDesciption}</p>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="card-footer d-flex justify-content-between align-items-center">
+						<button  class="btn btn-sm ntflx-primary-btn" onclick='onedit(this)'>Edit</button>
+						<button class="btn btn-sm ntflx-secondary-btn" onclick ='OnRemove(this)'>Remove</button>
+
+			
+					</div>
+				</div>`
+
+  moviecontainer.append(div)
+
+  onshowhandl();
+
+
+}
+
+
+
+
+
+
 templating(moviesArr)
+movie.addEventListener('submit',onsubmithandl)
+showbtn.addEventListener('click',onshowhandl)
+close1.forEach(ele =>{
+  ele.addEventListener('click',onshowhandl)
+})
+
+
 

@@ -121,3 +121,71 @@ body::after{
     transform: scale(1);
     opacity: 1;
 }
+
+
+
+.backdrop{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0,0.75);
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+   z-index:0;
+   display: none;
+   animation: fadeIn .4s ease-in-out;
+
+}
+
+.backdrop.active {
+    display: block;
+
+}
+
+
+.movieModel{
+    width: 60%;
+    position: fixed;
+    background-color: #fff;
+    left: 20%;
+    top: 20%;
+    z-index: 1;
+    display: none;
+    animation: slidedown .4s ease-in-out;
+}
+
+.movieModel.active{
+    display: block;
+}
+
+
+.movieModel .addmovie{
+    
+    background-color: #fff;
+}
+
+
+@keyframes slidedown {
+    from{
+        transform: translateY(-50%);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+    
+}
+
+@media (maxwidth:600px) {
+    
+}

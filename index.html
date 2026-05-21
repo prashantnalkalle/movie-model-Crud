@@ -55,6 +55,50 @@
 			
 			</div>
 		</div>
+		<div class="backdrop closebtn" id="backdrop"></div>
+		<div class="movieModel" id="movieModel">
+					<form id="movie">
+						<div class="card addmovie">
+							<div class="card-header d-flex justify-content-between">
+								<h3>Add Movie Detail</h3>
+								<i role="button" class="fa-solid fa-xmark fa-2x closebtn"></i>
+							</div>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="MovieName">MovieName</label>
+									<input type="text" class="form-control" id="MovieName">
+								</div>
+								<div class="form-group">
+									<label for="movieImg">Movie Image</label>
+									<input type="text" class="form-control" id="movieImg">
+								</div>
+								<div class="form-group">
+									<label for="movieDescription">movieDescription</label>
+									<textarea  rows="4" type="text" class="form-control" id="movieDescription"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="movieRating">Movie Rating</label>
+									<select name="movieRating" class="form-control" id="movieRating">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option> 
+										<option value="5">5</option>
+									</select>
+								</div>
+
+								
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<button class="btn btn-sm ntflx-secondary-btn" id="addmovie">Add movie</button>
+								<button type="button" class="btn btn-sm ntflx-secondary-btn d-none" id="updatemovie">update detail</button>
+
+								<button type="button" class="btn btn-sm ntflx-primary-btn closebtn">Close</button>
+
+							</div>
+						</div>
+					</form>
+		</div>
 
 	</div>
 	<script src="./assests/js/app.js"></script>
