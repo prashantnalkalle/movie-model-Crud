@@ -80,3 +80,80 @@ function templating(arr){
 
 templating(moviesArr)
 
+
+function onedit(ele){
+  let editId = ele.closest('.col-md-3').id
+
+  localStorage.setItem('editId',editId)
+
+  let editObj = movieArr.find(ele => ele.movieId == editId)
+
+  onshowhandl();
+
+  MovieName.value = editObj.movieName
+  movieImg.value = editObj.movieImg
+  movieDescription.value = editObj.movieDesciption
+
+  addmovie.classList.add('d-none')
+  updatemovie.classList.remove('d-none')
+
+}
+
+function onupdatehandl(){
+  let updateId = localStorage.getItem('editId')
+
+  let updateObj ={
+    movieName : MovieName.value,
+    movieImg : movieImg.value,
+    movieDesciption : movieDescription.value,
+    movieRating : movieRating.value,
+    movieId : updateId
+  }
+
+  let index = movieArr.findIndex(ele => ele.movieId == updateId)
+
+  movieArr[index] = updateObj
+
+  localStorage.setItem('movieArr',JSON.stringify(movieArr))
+
+
+  // movie.reset()
+  let div = document.getElementById(updateId)
+
+  let result =`<div class="card moviecard">
+					      <div class="card-header d-flex justify-content-between align-items-center">
+						      <h2>${updateObj.movieName}</h2>
+						      <span class="badge ${badgecolor(updateObj.movieRating)}">${updateObj.movieRating}</span>
+					      </div>
+					      <div class="card-body">
+					      	<figure>
+						      	<img src=${updateObj.movieImg}
+							       alt="${updateObj.movieName}"
+							       title="${updateObj.movieName}">
+							      <figcaption>
+							      	<h4>${updateObj.movieName}</h4>
+								      <p>${updateObj.movieDesciption}</p>
+							      </figcaption>
+						     </figure>
+				        </div>
+					      <div class="card-footer d-flex justify-content-between align-items-center">
+						      <button  class="btn btn-sm ntflx-secondary-btn" onclick='onedit(this)'>Edit</button>
+						      <button class="btn btn-sm ntflx-primary-btn" onclick ='OnRemove(this)'>Remove</button>
+
+			
+					      </div>
+				      </div>`
+
+  div.innerHTML =result;
+
+
+  onshowhandl();
+
+
+ addmovie.classList.remove('d-none')
+ updatemovie.classList.add('d-none')
+
+  snackbar(`The Movie Details are Updated Successfully!!!`)
+
+
+}
