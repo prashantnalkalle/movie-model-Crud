@@ -170,20 +170,12 @@ function onsubmithandl(ele){
 
 }
 
-
-
-
-
-
 templating(moviesArr)
 movie.addEventListener('submit',onsubmithandl)
 showbtn.addEventListener('click',onshowhandl)
 close1.forEach(ele =>{
   ele.addEventListener('click',onshowhandl)
 })
-
-
-
 
 function OnRemove(ele){
   let removeId = ele.closest('.col-md-3').id
@@ -204,7 +196,6 @@ function OnRemove(ele){
   let removeObj= moviesArr.splice(index,1)
 
   ele.closest('.col-md-3').remove()
-
   snackbar(`The movie ${removeObj[0].movieName} is removed Successfully !!!`)
   }
 });
