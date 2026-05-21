@@ -47,7 +47,21 @@ let moviesArr = [
 ]
 
 
-localStorage.setItem('movieArr',JSON.stringify(moviesArr))
+// localStorage.setItem('movieArr',JSON.stringify(moviesArr))
+
+
+
+function snackbar(msg){
+  Swal.fire({
+    title : msg,
+    icon : 'success',
+    timer : 3000
+  })
+}
+
+
+
+
 
 
 function badgecolor(rating){
@@ -170,3 +184,29 @@ close1.forEach(ele =>{
 
 
 
+
+function OnRemove(ele){
+  let removeId = ele.closest('.col-md-3').id
+
+  Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: " #212529",
+  cancelButtonColor: " #e50914",
+  confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+  if (result.isConfirmed){
+    
+  let index = moviesArr.findIndex(m => m.movieId == removeId)
+
+  let removeObj= moviesArr.splice(index,1)
+
+  ele.closest('.col-md-3').remove()
+
+  snackbar(`The movie ${removeObj[0].movieName} is removed Successfully !!!`)
+  }
+});
+
+}
